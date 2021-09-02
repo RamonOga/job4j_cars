@@ -1,4 +1,4 @@
-package model.car;
+package ru.job4j_cars.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,18 +10,17 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "body")
-public class Body {
+@Table(name = "photo")
+public class Photo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+    private String path;
 
-
-    public static Body of(String name) {
-        Body rsl = new Body();
-        rsl.setName(name);
+    public static Photo of(String path) {
+        Photo rsl = new Photo();
+        rsl.setPath(path);
         return rsl;
     }
 }

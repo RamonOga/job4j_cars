@@ -1,27 +1,27 @@
-package model;
+package ru.job4j_cars.model.car;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.nio.file.Path;
 
 @Data
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "photo")
-public class Photo {
+@Table(name = "body")
+public class Body {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String path;
+    private String name;
 
-    public static Photo of(String path) {
-        Photo rsl = new Photo();
-        rsl.setPath(path);
+
+    public static Body of(String name) {
+        Body rsl = new Body();
+        rsl.setName(name);
         return rsl;
     }
 }

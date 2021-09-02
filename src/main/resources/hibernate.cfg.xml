@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://127.0.0.1:5432/todo_db</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://127.0.0.1:5432/car_db</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">password</property>
         <property name="hibernate.connection.pool_size">1</property>
@@ -20,12 +20,12 @@
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
 
-        <mapping class="model.User"/>
-        <mapping class="model.Ad"/>
-        <mapping class="model.Photo"/>
-        <mapping class="model.car.Body"/>
-        <mapping class="model.car.Mark"/>
-        <mapping class="model.car.Car"/>
+        <mapping class="ru.job4j_cars.model.User"/>
+        <mapping class="ru.job4j_cars.model.Ad"/>
+        <mapping class="ru.job4j_cars.model.Photo"/>
+        <mapping class="ru.job4j_cars.model.car.Body"/>
+        <mapping class="ru.job4j_cars.model.car.Mark"/>
+        <mapping class="ru.job4j_cars.model.car.Car"/>
 
 
     </session-factory>

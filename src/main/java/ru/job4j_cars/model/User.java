@@ -1,4 +1,4 @@
-package model;
+package ru.job4j_cars.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

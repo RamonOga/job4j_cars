@@ -1,9 +1,9 @@
-package model;
+package ru.job4j_cars.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import model.car.Car;
+import ru.job4j_cars.model.car.Car;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,6 +20,7 @@ public class Ad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String description;
+    @OneToOne
     private Car car;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Photo> photos = new ArrayList<>();
