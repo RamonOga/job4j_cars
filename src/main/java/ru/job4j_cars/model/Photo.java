@@ -5,9 +5,9 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Data
-@EqualsAndHashCode
 @ToString
 @Entity
 @Table(name = "photo")
@@ -22,5 +22,18 @@ public class Photo {
         Photo rsl = new Photo();
         rsl.setPath(path);
         return rsl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Photo photo = (Photo) o;
+        return id == photo.id && Objects.equals(path, photo.path);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, path);
     }
 }

@@ -6,11 +6,9 @@ import lombok.ToString;
 import ru.job4j_cars.model.car.Car;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Data
-@EqualsAndHashCode
 @ToString
 @Entity
 @Table(name = "ad")
@@ -23,7 +21,7 @@ public class Ad {
     @OneToOne
     private Car car;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Photo> photos = new ArrayList<>();
+    private Set<Photo> photos = new HashSet<>();
     private boolean actual = true;
 
     public static Ad of(String description, Car car) {
@@ -35,5 +33,21 @@ public class Ad {
 
     public void addPhoto(Photo photo) {
         this.photos.add(photo);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ad ad = (Ad) o;
+        return id == ad.id
+                && actual == ad.actual
+                && Objects.equals(description, ad.description)
+                && Objects.equals(car, ad.car);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, description, car, actual);
     }
 }

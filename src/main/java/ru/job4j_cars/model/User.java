@@ -5,14 +5,12 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Data
-@EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +18,7 @@ public class User {
     private String login;
     private String password;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Ad> ads = new ArrayList<>();
+    private Set<Ad> ads = new HashSet<>();
 
     public static User of(String login, String password) {
         User rsl = new User();
@@ -32,4 +30,20 @@ public class User {
     public void addAd(Ad ad) {
         ads.add(ad);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id
+                && Objects.equals(login, user.login)
+                && Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, password);
+    }
 }
+
