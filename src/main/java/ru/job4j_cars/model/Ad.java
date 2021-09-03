@@ -23,6 +23,8 @@ public class Ad {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Photo> photos = new HashSet<>();
     private boolean actual = true;
+    @Temporal(TemporalType.DATE)
+    private Date created = new Date(System.currentTimeMillis());
 
     public static Ad of(String description, Car car) {
         Ad rsl = new Ad();

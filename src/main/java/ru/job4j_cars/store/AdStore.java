@@ -2,7 +2,10 @@ package ru.job4j_cars.store;
 
 import ru.job4j_cars.model.Ad;
 import ru.job4j_cars.model.car.Body;
+import ru.job4j_cars.model.car.Mark;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AdStore {
@@ -28,5 +31,24 @@ public class AdStore {
                             " where a.id = :id"
                     ).setParameter("id", Integer.parseInt(id))
                     .uniqueResult());
+        }
+
+        public List<Ad> findByMark(Mark mark) {
+            List<Ad> ads = service.tx(session -> session
+                    .createQuery(
+                            "select distinct a from Ad a " +
+                                    "join fetch a.photos where a.car.mark = :mark"
+                    ).setParameter("mark", mark)
+                    .list());
+
+            return ads;
+        }
+
+        public List<Ad> findWithPhoto() {
+            return null;
+        }
+
+        public List<Ad> findToday() {
+            return null;
         }
     }

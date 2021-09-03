@@ -31,5 +31,6 @@ create table ad (
     id serial primary key,
     description text,
     actual boolean,
-    car_id int references  car(id)
+    car_id int references  car(id),
+    user_id int references users(id)
 );
