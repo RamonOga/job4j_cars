@@ -34,11 +34,12 @@ public class AdStore {
         }
 
         public List<Ad> findByMark(Mark mark) {
+            String m = mark.getName();
             List<Ad> ads = service.tx(session -> session
                     .createQuery(
                             "select distinct a from Ad a " +
-                                    "join fetch a.photos where a.car.mark = :mark"
-                    ).setParameter("mark", mark)
+                                    "join fetch a.photos where a.car.mark.name = :mark"
+                    ).setParameter("mark", m)
                     .list());
 
             return ads;
