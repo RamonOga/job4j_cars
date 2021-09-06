@@ -1,15 +1,12 @@
 package ru.job4j_cars.model;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import ru.job4j_cars.model.car.Car;
 
 import javax.persistence.*;
 import java.util.*;
 
 @Data
-@ToString
 @Entity
 @Table(name = "ad")
 public class Ad {
@@ -51,5 +48,17 @@ public class Ad {
     @Override
     public int hashCode() {
         return Objects.hash(id, description, car, actual);
+    }
+
+    @Override
+    public String toString() {
+        return "Ad{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", car=" + car +
+                ", photos=" + photos +
+                ", actual=" + actual +
+                ", created=" + created +
+                '}' + System.lineSeparator();
     }
 }
